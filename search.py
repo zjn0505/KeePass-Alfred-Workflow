@@ -50,7 +50,8 @@ def main(wf):
     result = process.expect(["kpcli:/>", "invalid", pexpect.EOF])
 
     if result == 0:
-        process.sendline("find " + args[0].replace(" ", "\ "))
+        wf.logger.debug(args[0].replace(" ", "\ "))
+        process.sendline("find -a " + args[0].replace(" ", "\ "))
     else:
         wf.add_item("Couldn't open the database.",
                     "Make sure you have set your password with \"pass-set-password <passowrd>\".")
